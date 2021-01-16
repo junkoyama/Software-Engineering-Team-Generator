@@ -34,8 +34,8 @@ class Employee {
 
 class Employee extends Manager {
     constuctor(officeNumber) {
-        this.officeNumber = officeNumber;
         super(); // calls Employee's class
+        this.officeNumber = officeNumber;
     };
 
     getRole() {
@@ -45,8 +45,9 @@ class Employee extends Manager {
 
 class Employee extends Engineer {
     constructor(github) {
-        this.github = github;
         super();
+        this.github = github;
+
 
     };
 
@@ -57,8 +58,9 @@ class Employee extends Engineer {
 
 class Employee extends Intern {
     constructor(school) {
-        this.school = school;
         super();
+        this.school = school;
+        
     };
 
     getSchool(){
