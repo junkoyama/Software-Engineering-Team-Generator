@@ -15,20 +15,20 @@ class Employee {
         this.email = email;
     }
 
-    getName() {
+    getName(name) {
         console.log(`Name: ${this.name}`);
     };
 
-    getId() {
+    getId(id) {
         console.log(`Id: ${this.id}`)
     };
 
-    getEmail() {
+    getEmail(email) {
         console.log(`Email: ${this.email}`)
     };
 
-    getRole() {
-        // write code here. not too sure
+    getRole(role) {
+        console.log(`Role: ${this.role}`)
     };
 };
 
