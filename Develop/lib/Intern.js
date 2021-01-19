@@ -2,19 +2,43 @@
 const Employee = require("./Employee");
 
 class Intern extends Employee {
-    constructor(school, name, id, email) {
-        super(name, id, email);
-        this.school = school;
-        
-    };
+  constructor(school, name, id, email) {
+    super(name, id, email);
 
-    getSchool(school){
-        this.school = school;
-    };
+    if (!name) {
+      throw new Error("You are missing the name.");
+    }
+    if (!id) {
+      throw new Error("You are missing the id.");
+    }
+    if (!email) {
+      throw new Error("You are missing the email.");
+    }
+    if (!school) {
+      throw new Error("You are missing the school name.");
+    }
 
-    getRole(role) {
-        console.log(`Role: ${this.role}`)
-    };
-};
+    this.school = school;
+  }
+  getName() {
+    return this.name;
+  }
 
-// still need to add some code here. Researching
+  getId() {
+    return this.id;
+  }
+
+  getEmail() {
+    return this.email;
+  }
+
+  getRole() {
+    return this.role;
+  }
+
+  getSchool() {
+    return this.school;
+  }
+}
+
+module.exports = Employee;

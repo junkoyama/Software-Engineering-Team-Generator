@@ -2,14 +2,44 @@
 const Employee = require("./Employee");
 
 class Manager extends Employee {
-    constuctor(officeNumber, name, id, email) {
-        super(name, id, email); // calls Employee's class
-        this.officeNumber = officeNumber;
-    };
+  constuctor(officeNumber, name, id, email) {
+    super(name, id, email); // calls Employee's class
 
-    getRole(role) {
-        console.log(`Role: ${this.role}`)
-    };
-};
+    if (!name) {
+      throw new Error("You are missing the name.");
+    }
+    if (!id) {
+      throw new Error("You are missing the id.");
+    }
+    if (!email) {
+      throw new Error("You are missing the email.");
+    }
+    if (!officeNumber) {
+      throw new Error("You are missing the office number.");
+    }
 
-// still need to add some code here. Researching
+    this.officeNumber = officeNumber;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getEmail() {
+    return this.email;
+  }
+
+  getRole() {
+    return this.role;
+  }
+
+  getOfficeNumer() {
+    return this.officeNumber;
+  }
+}
+
+module.exports = Employee;

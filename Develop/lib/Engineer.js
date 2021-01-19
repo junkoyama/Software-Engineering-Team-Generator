@@ -2,18 +2,44 @@
 const Employee = require("./Employee");
 
 class Engineer extends Employee {
-    constructor(github, name, id, email) {
-        super(name, id, email);
-        this.github = github;
-    };
+  constructor(github, name, id, email) {
+    super(name, id, email);
 
-    getRole(role) {
-        console.log(`Role: ${this.role}`)
-    };
-
-    getGithub(github) {
-        this.github = github;
+    if (!name) {
+      throw new Error("You are missing the name.");
     }
-};
+    if (!id) {
+      throw new Error("You are missing the id.");
+    }
+    if (!email) {
+      throw new Error("You are missing the email.");
+    }
+    if (!github) {
+        throw new Error("You are missing the github name.");
+      }
 
-// still need to add some code here. Researching
+    this.github = github;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getEmail() {
+    return this.email;
+  }
+
+  getGitHub() {
+    return this.github;
+  }
+
+  getRole() {
+    return this.role;
+  }
+}
+
+module.exports = Engineer;
