@@ -5,19 +5,6 @@ class Intern extends Employee {
   constructor(school, name, id, email) {
     super(name, id, email);
 
-    if (!name) {
-      throw new Error("You are missing the name.");
-    }
-    if (!id) {
-      throw new Error("You are missing the id.");
-    }
-    if (!email) {
-      throw new Error("You are missing the email.");
-    }
-    if (!school) {
-      throw new Error("You are missing the school name.");
-    }
-
     this.school = school;
   }
   getName() {
@@ -33,7 +20,7 @@ class Intern extends Employee {
   }
 
   getRole() {
-    return this.role;
+    return "Intern";
   }
 
   getSchool() {
@@ -41,4 +28,4 @@ class Intern extends Employee {
   }
 }
 
-module.exports = Employee;
+module.exports = Intern;

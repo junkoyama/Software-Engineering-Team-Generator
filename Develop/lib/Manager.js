@@ -2,21 +2,8 @@
 const Employee = require("./Employee");
 
 class Manager extends Employee {
-  constuctor(officeNumber, name, id, email) {
+  constructor(officeNumber, name, id, email) {
     super(name, id, email); // calls Employee's class
-
-    if (!name) {
-      throw new Error("You are missing the name.");
-    }
-    if (!id) {
-      throw new Error("You are missing the id.");
-    }
-    if (!email) {
-      throw new Error("You are missing the email.");
-    }
-    if (!officeNumber) {
-      throw new Error("You are missing the office number.");
-    }
 
     this.officeNumber = officeNumber;
   }
@@ -34,7 +21,7 @@ class Manager extends Employee {
   }
 
   getRole() {
-    return this.role;
+    return "Manager";
   }
 
   getOfficeNumer() {
@@ -42,4 +29,4 @@ class Manager extends Employee {
   }
 }
 
-module.exports = Employee;
+module.exports = Manager;
