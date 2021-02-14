@@ -10,7 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const employeeQuestions = [
+const promptEmployeeQs = () => {
+  return inquirer.prompt([
   {
     type: "list",
     name: "role",
@@ -47,9 +48,11 @@ const employeeQuestions = [
     name: "school",
     message: "Please enter the name of the employee's school",
   },
-];
+]);
+};
 
-employeeQuestions();
+
+promptEmployeeQs();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
