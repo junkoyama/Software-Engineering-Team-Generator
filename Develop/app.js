@@ -10,60 +10,89 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const promptEmployeeQs = () => {
-  return inquirer.prompt([
+const listEngTeam = [];
+
+const promptEmployeeQs = () => 
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "manager_name",
+      message: "Hello, Manager. Please enter your name to log in"
+    },
   {
     type: "list",
     name: "role",
-    message: "Please select an employee role",
-    choices: ["Manager", "Engineer", "Intern"],
+    message: "Which role would you like to add to your team?",
+    choices: ["Engineer", "Intern"]
   },
   {
     type: "input",
     name: "name",
-    message: "Please enter the employee's name",
+    message: "Please enter their name",
   },
   {
     type: "input",
     name: "id",
-    message: "Please enter the employee's id",
+    message: "Please enter their id"
   },
   {
     type: "input",
     name: "email",
-    message: "Please enter the employee's email",
+    message: "Please enter their email"
   },
   {
     type: "input",
     name: "office",
     message: "Please enter the employee's office phone number",
+    when: (answer) => answer.manager_name === true
   },
   {
     type: "input",
     name: "github",
     message: "Please enter the employee's github",
+    when: (answer) => answer.role === "Engineer"
   },
   {
     type: "input",
     name: "school",
     message: "Please enter the name of the employee's school",
+    when: (answer) => answer.role === "Intern"
   },
+  {
+    type: "confirm",
+    name: "addAnotherEmployee",
+    message: "Would you like to add another employee?"
+  }
 ]);
+
+const init = () => {
+  promptEmployeeQs()
+  .then((answer) => {
+  if (answer.role === "Manager"){
+
+    const mgrRole = new Manager (answer.name, answer.id, answer.email, answer.officeNumber);
+    
+    listEngTeam.push(mgrRole);
+
+  } else if (answer.role === "Engineer"){
+
+    const engRole = new Engineer (answer.name, answer.id, answer.email, answer.github);
+    
+    listEngTeam.push(engRole);
+
+  } else if (answer.role === "Intern") {
+
+    const internRole = new Intern (answer.name, answer.id, answer.email, answer.school)
+
+    listEngTeam.push(internRole);
+
+  } const html = render(listEngTeam);
+      fs.writeFile(outputPath, html, (error) => {
+        if (error) {
+          throw error
+        }
+      });
+  });
 };
 
-
-promptEmployeeQs();
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+init();
