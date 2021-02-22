@@ -1,0 +1,8 @@
+.card {
+    margin: 1em;    
+}
+
+.team-heading, .card-header {
+    background-color: cadetblue;
+    color:aliceblue
+}
